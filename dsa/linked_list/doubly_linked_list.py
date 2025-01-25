@@ -66,6 +66,21 @@ class DoublyLinkedList:
             prev.next = found.next
             found.next.prev = prev
 
+        self.count -= 1
+
+    def iter(self):
+        current = self.tail
+        while current:
+            val = current.data
+            current = current.next
+            yield val
+
+    def search(self, data):
+        for e in self.iter():
+            if e == data:
+                return True
+        return False
+
 
     def __str__(self):
         """Returns a string representation of the list showing pointers."""
@@ -97,3 +112,4 @@ dll.delete("B")
 
 # Print the DoublyLinkedList
 print(dll)
+
