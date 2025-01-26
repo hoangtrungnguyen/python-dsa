@@ -48,6 +48,6 @@ expected_output_suite = [
 for test_case, operations, expected_output in zip(test_cases, operations_suite, expected_output_suite):
     # Initialize the queue with the test case data
     queue = DoubleStackQueue()
-    queue.stack1 = test_case[0]
-    queue.stack2 = test_case[1]
+    queue.inbound_stack = test_case[0]
+    queue.outbound_stack = test_case[1]
     test_double_stack_queue(operations, expected_output)
