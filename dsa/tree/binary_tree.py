@@ -159,6 +159,20 @@ class BinaryTree:
 
         return parent, None
 
+
+    def search(self, data):
+        current = self.root
+        while True:
+            if current is None:
+                return None
+            elif current.data == data:
+                return current
+            elif data > current.data:
+                current = current.right
+            else:
+                current = current.left
+
+
     def find_min(self):
         current = self.root
         while current.left:
@@ -221,6 +235,8 @@ print(tree)
 # print('--- remove 4 ---')
 # tree.remove(4)
 # print(tree)
+
+
 
 
 
