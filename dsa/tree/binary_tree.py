@@ -1,3 +1,4 @@
+from collections import deque
 
 
 class Node:
@@ -5,6 +6,7 @@ class Node:
         self.data = data
         self.left = None
         self.right = None
+
 
     def __str__(self):
         return self._diagram(self)
@@ -209,6 +211,20 @@ class BinaryTree:
         self.postorder(current.right)
         print(current.data)
 
+    def breadth_first_traversal(self):
+        list_of_nodes = []
+        traversal_queue = deque([self.root])
+        while len(traversal_queue) > 0:
+            node = traversal_queue.popleft()
+            list_of_nodes.append(node.data)
+
+            if node.left:
+                traversal_queue.append(node.left)
+            if node.right:
+                traversal_queue.append(node.right)
+
+        return list_of_nodes
+
     def __str__(self):
         return f'{self.root}'
 
@@ -260,7 +276,7 @@ print(tree)
 # tree.remove(4)
 # print(tree)
 
-
+print(tree.breadth_first_traversal())
 
 
 
