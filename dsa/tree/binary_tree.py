@@ -185,6 +185,30 @@ class BinaryTree:
             current = current.right
         return current
 
+    def inorder(self, node):
+        current = node
+        if current is None:
+            return
+        self.inorder(current.left)
+        print(current.data)
+        self.inorder(current.right)
+
+    def preorder(self,node):
+        current = node
+        if current is None:
+            return
+        print(current.data)
+        self.preorder(current.left)
+        self.preorder(current.right)
+
+    def postorder(self, node):
+        current = node
+        if current is None:
+            return
+        self.postorder(current.left)
+        self.postorder(current.right)
+        print(current.data)
+
     def __str__(self):
         return f'{self.root}'
 
