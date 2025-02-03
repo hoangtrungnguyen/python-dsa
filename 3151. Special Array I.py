@@ -22,9 +22,25 @@ class Solution:
 
         return True
 
+class Solution2:
+    def isArraySpecial(self, nums: List[int]) -> bool:
+        n = len(nums)
+        if n == 1:
+            return True
+        prev = nums[0] & 1
+        for i in range(1, n):
+            next = nums[i] & 1
+            if prev ^ next == 0: #XOR operator
+                return False
+            prev = next
+        return True
 
-print(Solution().isArraySpecial(nums=[2, 1, 4]))
-print(Solution().isArraySpecial(nums=[2, 1, 4, 3]))
-print(Solution().isArraySpecial(nums=[2, 1, 4, 8]))
-print(Solution().isArraySpecial(nums=[2, 1, 1]))
-print(Solution().isArraySpecial(nums=[2]))
+
+
+# print(Solution().isArraySpecial(nums=[2, 1, 4]))
+# print(Solution().isArraySpecial(nums=[2, 1, 4, 3]))
+# print(Solution().isArraySpecial(nums=[2, 1, 4, 8]))
+# print(Solution().isArraySpecial(nums=[2, 1, 1]))
+# print(Solution().isArraySpecial(nums=[2]))
+print(Solution2().isArraySpecial(nums=[2, 1, 4]))
+print(Solution2().isArraySpecial(nums=[2, 1, 4, 8]))
