@@ -1,4 +1,3 @@
-#include <cstdio>
 #include <stdio.h>
 #include <stdlib.h>
 #include <string.h>
@@ -87,8 +86,29 @@ void identify_identical(snowflake_node *snowflakes[]){
     printf("No two integers are alike.\n");
 }
 
+#define hashsize(n) ((unsigned  long) 1 << (n))
+#define hashmask(n) (hashsize(n) - 1)
+
+unsigned long oaat(char *key, unsigned  long len, unsigned  long bits){
+    unsigned  long hash, i;
+    for (hash = 0, i = 0; i < len; i ++){
+        hash += key[i];
+        hash += (hash << 10);
+        hash ^= (hash >> 6);
+    }
+
+    hash += (hash << 3);
+    hash ^= (hash >> 11);
+    hash += (hash << 15);
+    return hash & hashmask(bits);
+}
+
 int main(void) {
-    //region  create codes
+//    long snowflake[] = {1, 2, 3, 4, 5, 6};
+    //2^17 is the smallest power of 2 that is at least 100000  Hash Tables 17
+//    unsigned long code = oaat((char *)snowflake, sizeof(snowflake), 17);
+//    printf("%lu\n", code);
+//    return 0;
     static snowflake_node  *snowflakes[SIZE] = {NULL};// one dimensional array of snowflake_node with SIZE
     snowflake_node *snow;
 
@@ -105,16 +125,14 @@ int main(void) {
             scanf("%d", &snow->snowflake[j]);
         }
         //generate code
-        snowflake_code = code(snow -> snowflake);
+        snowflake_code = oaat((char *) snow -> snowflake, sizeof(snowflakes), 17);
 
         //assign new next node to position: snowflake_code
         snow->next = snowflakes[snowflake_code];
         snowflakes[snowflake_code] = snow;
     }
 
-    //endregion
     identify_identical(snowflakes);
-
 
     return 0;
 }
