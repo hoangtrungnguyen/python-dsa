@@ -52,7 +52,7 @@ unsigned long oaat(char *key, unsigned  long len, unsigned  long bits){
 
 typedef struct word_node {
     char **word;
-    struct word_npde *next;
+    struct word_node *next;
 } word_node;
 
 int in_hash_table(word_node *hash_table[], char *find, unsigned  find_len){
