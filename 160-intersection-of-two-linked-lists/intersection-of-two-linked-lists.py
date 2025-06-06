@@ -6,15 +6,9 @@
 
 class Solution:
     def getIntersectionNode(self, headA: ListNode, headB: ListNode) -> Optional[ListNode]:
-        node_hash_map = dict()
-        curr_A = headA
-        while curr_A is not None:
-            node_hash_map[curr_A] = 1
-            curr_A = curr_A.next
-        
-        curr_B = headB
-        while curr_B is not None:
-            if curr_B in node_hash_map:
-                return curr_B
-            curr_B = curr_B.next
-        return None
+        p1 = headA
+        p2 = headB
+        while p1 is not p2:
+            p1 = p1.next if p1 is not None else headB
+            p2 = p2.next if p2 is not None else headA
+        return p1
