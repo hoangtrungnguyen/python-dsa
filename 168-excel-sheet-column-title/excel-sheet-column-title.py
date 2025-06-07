@@ -8,7 +8,6 @@ class Solution:
         while number > 0:
             remainder = (number - 1) % SIZE
             quotient = (number - 1) // SIZE
-            print(quotient)
             result_chars.insert(0, chr(65 + remainder))
             number =  quotient
         
