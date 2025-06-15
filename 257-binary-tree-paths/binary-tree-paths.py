@@ -26,12 +26,10 @@ class Solution:
             else:
                 path = f'{path}->{node.val}'
 
-            if node.left is not None:
-                if dfs(node.left, path) is not None:
+            if node.left and dfs(node.left, path):
                     path = f"{dfs(node.left, path)}->{path}"
                 
-            if node.right is not None:
-                if dfs(node.right, path) is not None:
+            if node.right and dfs(node.right, path):
                     path = f"{dfs(node.right, path)}->{path}"
 
             # print(f'path: {path}')
