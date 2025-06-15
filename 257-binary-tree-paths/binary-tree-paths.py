@@ -10,9 +10,9 @@ class Solution:
         result = []
 
         def dfs(node:Optional[TreeNode], path: str):
-            if node is None:
-                result.append(path)
-                return 
+            # if node is None:
+                # result.append(path)
+                # return 
             # print(node.val)
             # path = f""
             # result.append(path)
