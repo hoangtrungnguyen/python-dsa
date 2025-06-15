@@ -13,7 +13,7 @@ class Solution:
             if node is None:
                 result.append(path)
                 return 
-            print(node.val)
+            # print(node.val)
             # path = f""
             # result.append(path)
             # if node.left is None and node.right is None:
@@ -26,11 +26,15 @@ class Solution:
             else:
                 path = f'{path}->{node.val}'
 
-            if node.left and dfs(node.left, path):
-                    path = f"{dfs(node.left, path)}->{path}"
+            if node.left:
+                left_path = dfs(node.left, path)
+                if left_path:
+                    path = f"{left_path}->{path}"
                 
-            if node.right and dfs(node.right, path):
-                    path = f"{dfs(node.right, path)}->{path}"
+            if node.right:
+                right_path = dfs(node.right, path)
+                if right_path:
+                    path = f"{right_path}->{path}"
 
             # print(f'path: {path}')
             if node.left is None and node.right is None:
