@@ -6,5 +6,4 @@ class Solution:
             bit = n & 1
             result = result | bit
             n = n >> 1
-            print(n)
         return result
