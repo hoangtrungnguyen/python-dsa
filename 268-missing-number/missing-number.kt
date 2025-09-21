@@ -7,13 +7,14 @@ class Solution {
         }
         return expectedSum
 
-        for( i in 0 until l) {
+        var i = 0
+        while(i < l) {
             val tmp = nums[i]
             if( tmp < l && tmp >= 0){
                 nums[i] = nums[tmp]
                 nums[tmp] = tmp
             } else {
-                nums[i] = -1
+                i += 1
             }
                     println(nums.joinToString(", "))
 
