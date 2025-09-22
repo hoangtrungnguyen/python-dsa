@@ -1,13 +1,12 @@
 
 class Solution {
     fun maxFrequencyElements(nums: IntArray): Int {
-        val frequencies = mutableMapOf<Int, Int>()
+        val frequencies = IntArray(101)
         var maxCount = 0
         var total = 0
         for(i in nums.indices){
             val value = nums[i]
-            frequencies.putIfAbsent(value, 0)
-            frequencies[value] = frequencies[value]!! + 1
+            frequencies[value] = frequencies[value] + 1
             if(frequencies[value]!! > maxCount){
                 maxCount = frequencies[value]!!
                 total = frequencies[value]!!
@@ -15,7 +14,6 @@ class Solution {
                 total += frequencies[value]!!
             }
         }
-
 
         return total
     }
