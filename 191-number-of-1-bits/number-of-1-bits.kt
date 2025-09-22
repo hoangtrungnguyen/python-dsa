@@ -3,10 +3,8 @@ class Solution {
         var n = number
         var count = 0
         while( n > 0){
-            if( n % 2 == 1){
-                count ++
-            }
-            n /= 2
+            n = n and (n-1)
+            count ++
         }
 
         return count
