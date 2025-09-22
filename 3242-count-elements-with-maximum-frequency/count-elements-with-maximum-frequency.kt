@@ -16,7 +16,6 @@ class Solution {
                 listOfKeys.add(value)
             }
         }
-        println("listOfKeys ${listOfKeys}")
 
         var total = 0
         for(key in listOfKeys){
