@@ -6,15 +6,11 @@ class Solution {
             val a = nums[i]
             val b = nums[i - 1]
             val c = nums[i - 2]
-            if(isTriangle(a,b,c)){
+            if(b + c > a){
                 return a + b + c
             }
         }
 
         return 0
-    }
-
-    private fun isTriangle(a: Int, b: Int, c:Int): Boolean{
-        return (a + b) > c && (b + c) > a && (a + c) > b
     }
 }
