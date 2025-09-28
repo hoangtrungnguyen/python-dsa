@@ -1,17 +1,13 @@
 class Solution {
-    fun largestPerimeter(origin: IntArray): Int {
-        var nums = origin.sorted()
+    fun largestPerimeter(nums: IntArray): Int {
+        nums.sort()
         // println("nums ${nums.joinToString(",")}")
-        for(i in nums.size - 1 downTo 0){
+        for(i in nums.size - 1 downTo 2){
             val a = nums[i]
-            for( j in i - 1 downTo 0){
-                val b = nums[j]
-                for(k in j - 1 downTo 0){
-                    val c = nums[k]
-                    if(isTriangle(a,b,c)){
-                        return a + b + c
-                    }
-                }
+            val b = nums[i - 1]
+            val c = nums[i - 2]
+            if(isTriangle(a,b,c)){
+                return a + b + c
             }
         }
 
