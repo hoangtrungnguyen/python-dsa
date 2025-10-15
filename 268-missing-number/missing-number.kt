@@ -33,4 +33,8 @@ class Solution {
 //      nums[value] = value
 //   else:
 //      nums[i] = -1
-// 
+//
+
+fun main(){
+    Solution().missingNumber(intArrayOf(1,2,3))
+}
