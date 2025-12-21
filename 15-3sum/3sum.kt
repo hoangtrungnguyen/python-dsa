@@ -15,50 +15,69 @@ class Solution {
         // move p2 until sum(base, p1, p2) == 0; return when triplet when there is
         // if p2 == base: invalid
 
-        val result = mutableSetOf<List<Int>>()
+        val result = mutableListOf<List<Int>>()
 
         nums.sort()
         // println(nums.joinToString())
-        var base = 1      // while (base > 0) {
+        var base = 0     // while (base > 0) {
         // println("base ${base}")
-        var pLeft = base -1
-        var pRight = base + 1
+        var pLeft = base + 1
+        var pRight = nums.size - 1
+        val usedNums = mutableSetOf<Int>()
         
-        while(base < nums.size - 1){
+        while(nums[base] <= 0 && base < nums.size - 2 ){
+            if(base > 0 && nums[base] == nums[base - 1]){
+                base += 1
+                pLeft = base + 1
+                pRight = nums.size - 1
+                continue
+            }
             var curSum = sum3(nums, base, pLeft, pRight)
 
-            while(pLeft >= 0 && pRight < nums.size){
+
+            while(pLeft < pRight){
                 curSum = sum3(nums, base, pLeft, pRight)
                 if(curSum == 0){
-                    addRes(nums, result, base, pLeft, pRight)
-                    pLeft -= 1
-                    pRight += 1
 
+                    while(pLeft < pRight && nums[pLeft] == nums[pLeft + 1]){
+                        pLeft += 1
+                    }
+
+                    while(pRight > pLeft && nums[pRight] == nums[pRight - 1] ){
+                        pRight -= 1
+                    }
+
+            
+                    addRes(nums, result, base, pLeft, pRight)
+
+
+                    pLeft += 1
+                    pRight -= 1
                 } else if (curSum < 0){
-                    pRight += 1
+                    pLeft += 1
                 } else {
-                    pLeft -= 1
+                    pRight -= 1
                 }
 
             }
 
             base += 1
-            pLeft = base - 1
-            pRight = base + 1
+            pLeft = base + 1
+            pRight = nums.size - 1 
         }
         
 
-        return result.toList()
+        return result
     }
 
     private fun sum3(nums: IntArray, i1: Int, i2: Int, i3: Int): Int {
     
-        val sum =  listOf<Int>(i1, i2, i3).filter { it >= 0 }.sumOf { nums[it] }
+        // val sum =  listOf<Int>(i1, i2, i3).filter { it >= 0 }.sumOf { nums[it] }
         // println("i1 ${i1} ${i2} ${i3}. Sum=${sum}")
-        return sum
+        return nums[i1] + nums[i2] + nums[i3]
     }
 
-    private fun addRes(nums: IntArray, result: MutableSet<List<Int>>, i1: Int, i2: Int, i3: Int) {
+    private fun addRes(nums: IntArray, result: MutableList<List<Int>>, i1: Int, i2: Int, i3: Int) {
     
         // println("Sorted nums: ${nums.contentToString()}")
         // println("okay triplet indexes: ${i1}, ${i2}, ${i3} ")
@@ -69,7 +88,7 @@ class Solution {
                 nums[i1],
                 nums[i2],
                 nums[i3],
-            ).sorted()
+            )
         )
     }
 }
