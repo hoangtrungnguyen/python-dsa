@@ -19,17 +19,7 @@ class Node {
 */
 
 class Solution {
-    public Node cloneGraph(Node node) {
-        Queue<Node> queue = new LinkedList<>();
-        // choseNode = node
-        // map = {}
-        // queue = []
-        // 1. creat new Node. map[choseNode] = newNode
-        // 2. loop through each child in a chosen node. 
-        //      1. map[child] = child
-        //      2. queue.enque(child)
-        // 4. 
-        // 5. 
+    public Node cloneGraph(Node node) { 
         Map<Integer, Node> memory = new HashMap<>();
 
         return clone(memory, node);
