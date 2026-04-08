@@ -6,13 +6,32 @@
 #         self.right = right
 class Solution:
     def countNodes(self, root: Optional[TreeNode]) -> int:
-        # if root.left is None and root.right is None:
-        #     return 1
-        def dfs(node: Optional[TreeNode], count: int) -> int:
-            if node is None:
-                return 0
-            count = dfs(node.left, count) + dfs(node.right, count) + 1 
-            return count 
 
-        return dfs(root, 0)
-        # return count
+        if not root:
+            return 0
+        
+        def get_left_height(node):
+            count = 0
+            while node:
+                count += 1
+                node = node.left
+            return count
+        
+        def get_right_height(node):
+            count = 0
+            while node:
+                count += 1
+                node = node.right
+            return count
+        
+
+
+        lh = get_left_height(root)
+        rh = get_right_height(root)
+
+        # If left and right heights are
+        # equal return 2^height(1<<height) -1
+        if lh == rh:
+            return ( 1 << lh ) - 1
+        
+        return 1 + self.countNodes(root.left) + self.countNodes(root.right)
