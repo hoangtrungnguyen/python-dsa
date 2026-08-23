@@ -1,13 +1,8 @@
-import string
-
 class Solution:
-    def isPalindrome(self, s: str) -> bool:
-        word =s 
+    def isPalindrome(self, word: str) -> bool:
         i = 0
         j = len(word) - 1
-
         while i < j:
-
             if ord(word[i].lower()) not in range(97, 123) and ord(word[i].lower()) not in range(48, 58):
                 i += 1
             elif ord(word[j].lower()) not in range(97, 123) and ord(word[j].lower()) not in range(48, 58):
