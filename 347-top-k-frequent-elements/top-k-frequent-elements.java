@@ -1,47 +1,35 @@
 class Solution {
     public int[] topKFrequent(int[] nums, int k) {
-        Map<Integer,Integer> mapFreq = new HashMap<>(); // map value -> frequencies 
-        
-        for(int i = 0; i < nums.length; i ++){
-            mapFreq.putIfAbsent(nums[i],  0);
-            mapFreq.put(nums[i], mapFreq.get(nums[i]) + 1);
+        // count frequency of each number
+        Map<Integer, Integer> mapFreq = new HashMap<>();
+        for (int num : nums) {
+            mapFreq.merge(num, 1, Integer::sum);
         }
 
-        // System.out.println(mapFreq);
-        
-        // initialize buckets
-        // index of buckets is the frequencies, element of buckets is list of num that have frequencies = index. Buckets length == nums.length because nums can contain only distinct num. 
-        List<ArrayList<Integer>> buckets = new ArrayList<>();
+        // bucket sort: index = frequency, value = list of nums with that frequency
+        // max possible frequency of any num is nums.length (if all elements are identical)
+        // so buckets needs indices 0..nums.length inclusive -> size nums.length + 1
+        List<List<Integer>> buckets = new ArrayList<>();
         for (int i = 0; i < nums.length + 1; i++) {
             buckets.add(new ArrayList<>());
         }
 
-        // System.out.println(buckets);
-
-
-        for(Map.Entry<Integer, Integer> entry: mapFreq.entrySet()){
+        // place each num into its frequency bucket
+        for (Map.Entry<Integer, Integer> entry : mapFreq.entrySet()) {
             int freq = entry.getValue();
-            ArrayList<Integer> freqNums = buckets.get(freq);
-            freqNums.add(entry.getKey());
-            buckets.set(freq, freqNums);
+            buckets.get(freq).add(entry.getKey()); // mutate in place, no need to re-set
         }
 
-        // System.out.println(buckets);
-
-        List<Integer> result = new ArrayList<>();
-        for(int i = buckets.size() - 1; i >= 0 ; i --){
-       
-                for(Integer e : buckets.get(i)){
-                    if(result.size() < k){
-                        result.add(e);
-                    } else {
-                        break;
-                    }
-                }
-            
+        // walk buckets from highest frequency to lowest, collect top k nums
+        int[] result = new int[k];
+        int idx = 0;
+        for (int i = buckets.size() - 1; i >= 0 && idx < k; i--) {
+            for (int num : buckets.get(i)) {
+                if (idx == k) break;
+                result[idx++] = num;
+            }
         }
 
-        return result.stream().mapToInt(Integer::intValue).toArray();
-
+        return result;
     }
 }
