@@ -8,6 +8,7 @@ class Solution {
         }
 
         // System.out.println(mapFreq);
+        
         // initialize buckets
         // index of buckets is the frequencies, element of buckets is list of num that have frequencies = index. Buckets length == nums.length because nums can contain only distinct num. 
         List<ArrayList<Integer>> buckets = new ArrayList<>();
