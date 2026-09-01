@@ -11,10 +11,8 @@ class Solution {
             if (mapFreq.containsKey(prefixSum)){
                 count += mapFreq.get(prefixSum);
             }
-            mapFreq.put(total, mapFreq.get(total) + 1);
-            
+            mapFreq.put(total, mapFreq.get(total) + 1);   
         }
-
         return count;
     }
 }
