@@ -11,7 +11,6 @@ class Solution:
     def cloneGraph(self, input: Optional['Node']) -> Optional['Node']:
         visited = {} # map keys: old_node . values: new_node
         def dfs(node: Optional['Node']):
-
             if node in visited:
                 return visited[node]
             if node is None:
@@ -23,8 +22,6 @@ class Solution:
             visited[node].neighbors = children
             return visited[node]
 
-        result = dfs(input)
-        return result
-
+        return dfs(input)
 
         
