@@ -8,15 +8,18 @@ class Solution {
         // char index in t -> chart at index in s
         HashMap<Character,Character> reversedDict = new HashMap<>();
 
+
         for(int i = 0; i < s.length(); i ++){
-            if(!dict.containsKey(s.charAt(i))){
-                if(reversedDict.containsKey(t.charAt(i))){
+            final char a = s.charAt(i);
+            final char b = t.charAt(i);
+            if(!dict.containsKey(a)){
+                if(reversedDict.containsKey(b)){
                     return false;
                 }
-                dict.put(s.charAt(i),t.charAt(i));
-                reversedDict.put(t.charAt(i), s.charAt(i));
+                dict.put(a,b);
+                reversedDict.put(b, a);
             } else {
-                if(dict.get(s.charAt(i)) != t.charAt(i)){
+                if(dict.get(a) != b){
                     return false;
                 } 
             }
