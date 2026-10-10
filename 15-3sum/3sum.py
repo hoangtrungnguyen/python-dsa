@@ -2,7 +2,6 @@ class Solution:
     def threeSum(self, input_arr: list[int]) -> list[list[int]]:
         k = 0
         nums = sorted(input_arr)
-        print(nums)
         result = []
         length = len(nums)
         while k < length - 2:
