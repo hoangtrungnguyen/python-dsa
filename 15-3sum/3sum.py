@@ -28,7 +28,7 @@ class Solution:
                             nums[index]
                             ]
 
-                        result.append(list(key))
+                        result.append(key)
                 num_to_index[value] = index
                 index += 1
             k += 1
