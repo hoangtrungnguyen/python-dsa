@@ -3,15 +3,15 @@ class Solution {
         Map<Integer, Integer> mapFreq = new HashMap<>();
         mapFreq.put(0,1);
         int count = 0;
-        Integer total = 0;
+        Integer prefixSum = 0;
         for(int i = 0; i < nums.length; i++){
-            total += nums[i];
-            int prefixSum = total - k;
-            mapFreq.putIfAbsent(total, 0);
-            if (mapFreq.containsKey(prefixSum)){
-                count += mapFreq.get(prefixSum);
+            prefixSum += nums[i]; // prefixSum
+            int targetKey = prefixSum - k;  
+            mapFreq.putIfAbsent(prefixSum, 0);
+            if (mapFreq.containsKey(targetKey)){
+                count += mapFreq.get(targetKey);
             }
-            mapFreq.put(total, mapFreq.get(total) + 1);   
+            mapFreq.put(prefixSum, mapFreq.get(prefixSum) + 1);   
         }
         return count;
     }
